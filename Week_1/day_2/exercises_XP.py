@@ -94,7 +94,7 @@ data = [
         "answer": "Wookiee"
     }
 ]
-
+# function quiz
 def ask_questions(data):
     correct_answers = 0
     incorrect_answers = 0
@@ -107,7 +107,7 @@ def ask_questions(data):
             print(f"Incorrect. The correct answer is {question['answer']}.")
             incorrect_answers += 1
     return correct_answers, incorrect_answers
-
+# function information 
 def display_results(correct, incorrect):
     print(f"\nQuiz Results:")
     print(f"Correct answers: {correct}")
