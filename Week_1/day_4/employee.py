@@ -1,4 +1,3 @@
-# Classes
 class Employee :
    def __init__(self, firstname, lastname, age, job, salary):
        self.firstname = firstname

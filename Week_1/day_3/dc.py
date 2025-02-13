@@ -2,27 +2,37 @@ class Farm:
     def __init__(self, farm_name):
         self.farm_name = farm_name  
         self.animals = {}
-    
-    def add_animal(self, animal_type, quantity=1):
-        if animal_type in self.animals:
-            self.animals[animal_type] += quantity
+        # self.all_animals = []
+
+    def add_animal(self, animal_name, animal_number =1):
+        if animal_name in self.animals:
+           self.animals[animal_name] += animal_number 
         else:
-            self.animals[animal_type] = quantity
-    
+            self.animals[animal_name] = animal_number
+        # self.all_animals.append(animal_name) #ajout dans la liste
+
     def get_info(self):
-        info = f"{self.farm_name}'s farm\n"
+        message =f"{self.farm_name}'s farm\n"
         for animal, quantity in self.animals.items():
-            info += f"{animal} : {quantity}\n"
-        info += "\n    E-I-E-I-0!"
-        return info
+            message += f"{animal} : {quantity}\n"
+        message += "\n    E-I-E-I-0!"
+        return message
     
-    def get_animal_types(self):
+    def get_animals_types(self):
+        # return sorted(self.all_animals)
         return sorted(self.animals.keys())
     
     def get_short_info(self):
-        animal_types = self.get_animal_types()
-        animal_types_plural = [animal + 's' if animal != 'sheep' else animal for animal in animal_types]
-        return f"{self.farm_name}’s farm has " + ', '.join(animal_types_plural) + "."
+        all_animals_sorted = self.get_animal_types()
+        list_animals = []
+        for animal in all_animals_sorted :
+            if self.animals[animal] > 1 :
+                list_animals.append(f"{animal}s")
+            else :
+                list_animals.append(f"{animal}")
+            # ["cows", "sheeps", "rabbits"]
+            message = f"{self.name} Farm has {", ".join(list_animals[:-1])} and {list_animals[-1]}"
+        return message
 
 macdonald = Farm("McDonald")
 macdonald.add_animal('cow', 5)
@@ -31,4 +41,4 @@ macdonald.add_animal('sheep')
 macdonald.add_animal('goat', 12)
 
 print(macdonald.get_info())
-print(macdonald.get_short_info())
+print(macdonald.get_animals_types())
