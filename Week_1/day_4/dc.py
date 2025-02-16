@@ -1,44 +1,35 @@
 class Pagination:
     def __init__(self, items=None, pageSize=10):
         self.items = items if items is not None else []
-        self.pageSize = int(pageSize)  # Convertir en entier si c'est un float
-        self.totalPages = max(1, -(-len(self.items) // self.pageSize))  # Nombre total de pages (arrondi au supérieur)
-        self.currentPage = 1  # La numérotation commence à 1
-
+        self.pageSize = int(pageSize)  
+        self.totalPages = max(1, -(-len(self.items) // self.pageSize)) 
+        self.currentPage = 1 
+        
+# Retourne les éléments visibles de la page actuelle
     def getVisibleItems(self):
-        """Retourne les éléments visibles de la page actuelle"""
         start = (self.currentPage - 1) * self.pageSize
         end = start + self.pageSize
         return self.items[start:end]
 
-    def prevPage(self):
-        """Passe à la page précédente si possible"""
-        self.currentPage = max(1, self.currentPage - 1)
-        return self  # Permet le chaînage
-
+# Passe à la page suivante 
     def nextPage(self):
-        """Passe à la page suivante si possible"""
         self.currentPage = min(self.totalPages, self.currentPage + 1)
         return self
 
     def firstPage(self):
-        """Va à la première page"""
         self.currentPage = 1
         return self
 
     def lastPage(self):
-        """Va à la dernière page"""
         self.currentPage = self.totalPages
         return self
 
     def goToPage(self, pageNum):
-        """Va à une page spécifique, tout en respectant les limites"""
-        pageNum = int(pageNum)  # Convertir en entier si c'est un float
+        pageNum = int(pageNum) 
         self.currentPage = max(1, min(self.totalPages, pageNum))
         return self
 
-
-# Exemple d'utilisation
+# Tests
 alphabetList = list("abcdefghijklmnopqrstuvwxyz")
 p = Pagination(alphabetList, 4)
 
